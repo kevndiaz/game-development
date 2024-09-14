@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dq4n2ydgtq3gl"]
 
-[ext_resource type="Script" path="res://scripts/player/NewScript.cs" id="1_0f80q"]
+[ext_resource type="Script" path="res://scripts/player/scene1_movement.cs" id="1_0f80q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_26c02"]
 
@@ -29,7 +29,7 @@ use_collision = true
 size = Vector3(10, 0.2, 10)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918813, 8.64629)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 12)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b1b8x")
@@ -37,7 +37,6 @@ environment = SubResource("Environment_b1b8x")
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.784823, 0)
 disable_mode = 1
-script = ExtResource("1_0f80q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.933103, 0)
