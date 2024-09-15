@@ -10,6 +10,7 @@ public partial class scene3_movement : CharacterBody3D
 	private Vector3 direction;
 	public const float MouseSensitivity = 0.1f;
 	private float smoothness = 0.2f;
+	private float zoomDistance = 2.0f;
 
 
 	/////////////////////////////////////////////
@@ -17,6 +18,7 @@ public partial class scene3_movement : CharacterBody3D
 	private Node3D camera;
 	private bool isCameraRight = true;
 	private bool isFirstPerson = false;
+	private bool isScoped = false;
 	public float CameraOffset = 1.5f;
 	public float CameraHeight = 0f;
 	public float CameraDistance = 0f;
@@ -80,8 +82,17 @@ public partial class scene3_movement : CharacterBody3D
 			isFirstPerson = !isFirstPerson;
 		}
 
+        // Hold right-click to scope in
+		if(Input.IsActionJustPressed("right-click")){
+			isScoped = !isScoped;
+		} else if(Input.IsActionJustReleased("right-click")){
+			isScoped = !isScoped;
+		}
+
+		zoomDistance = isScoped ? 1.0f : 0f;
+
 		CameraOffset = isFirstPerson ? 0 : 1.5f; // Changes cam offset to 0 if first person is true
-		smoothness = isFirstPerson ? 0.8f: 0.2f;
+		smoothness = isFirstPerson ? 1.0f: 0.2f;
 
 		float horizontalOffset = isCameraRight ? CameraOffset : -CameraOffset; // Switch the side in which the camera is positioned in 3rd person mode
 
@@ -97,10 +108,7 @@ public partial class scene3_movement : CharacterBody3D
 		
 		// Handle specific camera location for first/third person
 		Node3D cameraLocation = GetNode<Node3D>("Camera Controller/Camera Location");
-		Vector3 targetLocation = isFirstPerson ? new Vector3(0, 0, 0) : new Vector3(0, 2, 4);
-		cameraLocation.Position = cameraLocation.Position.Lerp(targetLocation, smoothness);
-	
-		
-		
+		Vector3 targetLocation = isFirstPerson ? new Vector3(0, 0, 0) : new Vector3(0, 2, 4 - zoomDistance);
+		cameraLocation.Position = cameraLocation.Position.Lerp(targetLocation, smoothness);		
 	}
 }
