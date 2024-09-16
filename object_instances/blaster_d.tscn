@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bucqgces7yoiv"]
+
+[ext_resource type="PackedScene" uid="uid://cdqqn22e5320r" path="res://kenny assets/Models/GLTF format/blasterD.glb" id="1_gwx0f"]
+[ext_resource type="Script" path="res://scripts/weapons/BlasterD.cs" id="2_3mem2"]
+
+[node name="blasterD2" instance=ExtResource("1_gwx0f")]
+script = ExtResource("2_3mem2")
+
+[node name="blasterD" parent="." index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -0.5)
+target_position = Vector3(0, 0, -1)

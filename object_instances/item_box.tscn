@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://df60oof367tdx"]
+
+[ext_resource type="Script" path="res://scripts/items/ItemBox.cs" id="1_plo17"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxp6j"]
+albedo_color = Color(1, 0.616667, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6mehc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ya6cu"]
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_plo17")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.7, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_cxp6j")
+mesh = SubResource("BoxMesh_6mehc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.7, 0, 0, 0)
+shape = SubResource("BoxShape3D_ya6cu")

@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://3j3o2mvbcyw1"]
+
+[ext_resource type="Script" path="res://scripts/player/scene2_movement.cs" id="1_4xnj2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvvvb"]
+albedo_color = Color(0, 1, 0.166667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tuigu"]
+material = SubResource("StandardMaterial3D_jvvvb")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h44f8"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_si6q3"]
+
+[sub_resource type="Sky" id="Sky_pct44"]
+sky_material = SubResource("ProceduralSkyMaterial_si6q3")
+
+[sub_resource type="Environment" id="Environment_o7ahs"]
+background_mode = 2
+sky = SubResource("Sky_pct44")
+
+[node name="Scene2" type="Node3D"]
+
+[node name="platform" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(10, 0.2, 10)
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.493811, 0)
+script = ExtResource("1_4xnj2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
+mesh = SubResource("BoxMesh_tuigu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+shape = SubResource("ConvexPolygonShape3D_h44f8")
+
+[node name="Camera Controller" type="Node3D" parent="player"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.493811, 0)
+top_level = true
+
+[node name="Camera Target" type="Node3D" parent="player/Camera Controller"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.6053, 8.68212)
+
+[node name="Camera3D" type="Camera3D" parent="player/Camera Controller/Camera Target"]
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o7ahs")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07462, 0.394125, 0)
+use_collision = true
+size = Vector3(3.77063, 1, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.12772, 0.995697, 0)
+use_collision = true
+size = Vector3(3.77063, 1, 0.5)
