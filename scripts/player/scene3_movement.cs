@@ -98,7 +98,7 @@ public partial class scene3_movement : CharacterBody3D
 		// Direction Inputs
 		var input_dir = Input.GetVector("left", "right", "forward", "backward");
 		direction = Transform.Basis * new Vector3(input_dir.X, 0, input_dir.Y);
-
+		
 		// Executes Movement
 		MoveAndSlide();
 		
